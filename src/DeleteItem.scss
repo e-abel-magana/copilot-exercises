@@ -1,0 +1,13 @@
+// DeleteItem.scss
+button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #c82333;
+    }
+  }
