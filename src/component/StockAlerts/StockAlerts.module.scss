@@ -3,3 +3,17 @@
     margin: 12px;
     color: red;
 }
+
+.outOfStockItems {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.column1 {
+    flex: 1
+}
+.column2 {
+    justify-content: flex-start !important;
+    flex: 4 1;
+}

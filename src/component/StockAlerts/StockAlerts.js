@@ -2,18 +2,45 @@ import { useContext } from 'react';
 import { StockContext } from '../../context/StockContext';
 import Alert from '../Alert';
 import styles from './StockAlerts.module.scss';
+import {  Button } from '@mui/material';
+
+import EditIcon from '@mui/icons-material/Edit';
 
 const StockAlerts = () => {
-  const { stock, alerts } = useContext(StockContext);
+  const { 
+    stock, 
+    alerts, 
+    handleUpdateModal: onUpdate
+  } = useContext(StockContext);
+
+  const outOfStockItems = stock.filter(item => +item.quantity === 0);
+
   return (
     <div>
         {alerts.map(alert => <Alert key={alert.id} message={alert.message} type={alert.type} />)}
         <div className={styles.outOfStock}>
-          {stock.map(item => (
-              +item.quantity === 0 && <p key={item.id}>{item.name} is out of stock!</p>
-          ))}
-        </div>
-    
+          <div>
+            {outOfStockItems.length > 0 && 
+              <Alert 
+                message={"Some items is out of stock! Please replenish the item(s) below"} 
+                type={"warning"}
+                clear={false} />
+            }
+          </div>
+          {outOfStockItems.map(item => (
+          <>
+            {+item.quantity === 0 && <>
+              <div className={styles.outOfStockItems}>
+                <p className={styles.column1} key={item.id}>{item.name} is out of stock!</p>
+                <Button className={styles.column2} onClick={() => onUpdate(item)}>
+                  <EditIcon />
+                </Button>
+              </div>
+            </> 
+            }
+          </>  
+        ))}  
+        </div>      
     </div>
   );
 };

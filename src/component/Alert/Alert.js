@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import AlertComponent from '@mui/material/Alert';
 
-function Alert({ message, type }) {
+function Alert({ message, type, clear=true  }) {
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setOpen(false);
+      if (clear)
+        setOpen(false);
     }, 2000);
 
     return () => {
