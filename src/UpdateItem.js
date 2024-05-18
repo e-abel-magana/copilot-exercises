@@ -29,8 +29,12 @@ function UpdateItem({ item, onUpdate, onClose }) {
         <div className={styles.body}>
           <TextField name="name" label="Name" value={updatedItem.name} onChange={handleChange} fullWidth required />
           <TextField name="description" label="Description" value={updatedItem.description} onChange={handleChange} fullWidth required />
-          <TextField name="quantity" type="number" label="Quantity" value={updatedItem.quantity} onChange={handleChange} fullWidth required />
-          <TextField name="price" type="number" label="Price" value={updatedItem.price} onChange={handleChange} fullWidth required />
+          <TextField name="quantity" type="number" label="Quantity" value={updatedItem.quantity} onChange={handleChange} fullWidth required 
+            InputProps={{ inputProps: { min: 0 } }}
+          />
+          <TextField name="price" min={0} type="number" label="Price" value={updatedItem.price} onChange={handleChange} fullWidth required 
+            InputProps={{ inputProps: { min: 0 } }}
+          />
         </div>
       </DialogContent>
       <DialogActions>

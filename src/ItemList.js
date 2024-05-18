@@ -1,11 +1,20 @@
 // ItemList.js
-import React, { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import SearchBar from './SearchBar';
 import ItemRow from './ItemRow';
 import UpdateItem from './UpdateItem';
 
-function ItemList({ items, onDelete, onUpdate }) {
+import { StockContext } from './StockContext';
+
+function ItemList() {
+
+  const { 
+    stock: items, 
+    handleUpdateItem: onUpdate, 
+    handleDeleteItem: onDelete 
+  } = useContext(StockContext);
+
   const [search, setSearch] = useState('');
   const [itemToUpdate, setItemToUpdate] = useState(null);
 
