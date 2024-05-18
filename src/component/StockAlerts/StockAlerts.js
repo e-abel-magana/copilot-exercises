@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { StockContext } from './StockContext';
-import Alert from './Alert';
+import { StockContext } from '../../context/StockContext';
+import Alert from '../Alert';
 
 const StockAlerts = () => {
   const { stock, alerts } = useContext(StockContext);

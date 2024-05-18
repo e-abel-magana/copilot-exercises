@@ -3,7 +3,7 @@ import { useState, useContext } from 'react';
 import './AddItem.scss';
 import { Button, TextField } from '@mui/material';
 
-import { StockContext } from './StockContext';
+import { StockContext } from '../../context/StockContext';
  
 function AddItem() {
 

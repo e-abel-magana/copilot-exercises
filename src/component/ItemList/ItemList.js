@@ -1,11 +1,11 @@
 // ItemList.js
 import { useState, useContext } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import SearchBar from './SearchBar';
-import ItemRow from './ItemRow';
-import UpdateItem from './UpdateItem';
+import SearchBar from '../SearchBar';
+import ItemRow from '../ItemRow';
+import UpdateItem from '../UpdateItem';
 
-import { StockContext } from './StockContext';
+import { StockContext } from '../../context/StockContext';
 
 function ItemList() {
 

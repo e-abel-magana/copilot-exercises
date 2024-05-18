@@ -3,7 +3,7 @@ import React from 'react';
 import { TableRow, TableCell, Button } from '@mui/material';
 
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteItem from './DeleteItem';
+import DeleteItem from '../DeleteItem';
 
 function ItemRow({ item, onDelete, onUpdate }) {
     return (

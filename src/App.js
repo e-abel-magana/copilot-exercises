@@ -1,10 +1,10 @@
 // App.js
 import './App.scss';
-import ItemList from './ItemList';
-import AddItem from './AddItem';
+import ItemList from './component/ItemList';
+import AddItem from './component/AddItem';
 
 import Typography from '@mui/material/Typography';
-import StockAlerts from './StockAlerts';
+import StockAlerts from './component/StockAlerts';
 
 function App() {
   return (
