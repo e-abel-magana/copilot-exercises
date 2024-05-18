@@ -1,8 +1,8 @@
-import  { useState, useContext } from 'react';
+import  { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button } from '@mui/material';
 import styles from './UpdateItem.module.scss';
 
-import { StockContext } from '../../context/StockContext';
+import useStockContext from '../../context/StockContext/useStockContext';
 
 function UpdateItem() {
 
@@ -11,7 +11,7 @@ function UpdateItem() {
     handleUpdateItem: onUpdate, 
     handleCloseModal: onClose,
     modalUpdateMode: mode,
-  } = useContext(StockContext);
+  } = useStockContext();
 
   const [updatedItem, setUpdatedItem] = useState(item);
 
@@ -54,8 +54,8 @@ function UpdateItem() {
         </div>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button onClick={handleSubmit}>Update</Button>
+        <Button data-testid="modal-cancel-button" onClick={onClose}>Cancel</Button>
+        <Button data-testid="modal-update-button" onClick={handleSubmit}>Update</Button>
       </DialogActions>
     </Dialog>
   );

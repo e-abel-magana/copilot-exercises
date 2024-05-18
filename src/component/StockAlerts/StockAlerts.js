@@ -1,17 +1,17 @@
-import { useContext } from 'react';
-import { StockContext } from '../../context/StockContext';
+ 
 import Alert from '../Alert';
 import styles from './StockAlerts.module.scss';
 import {  Button } from '@mui/material';
 
 import EditIcon from '@mui/icons-material/Edit';
+import useStockContext from '../../context/StockContext/useStockContext';
 
 const StockAlerts = () => {
   const { 
     stock, 
     alerts, 
     handleUpdateModal: onUpdate
-  } = useContext(StockContext);
+  } = useStockContext();
 
   const outOfStockItems = stock.filter(item => +item.quantity === 0);
 
@@ -28,7 +28,7 @@ const StockAlerts = () => {
             }
           </div>
           {outOfStockItems.map(item => (
-          <>
+          <div key={item.id}>
             {+item.quantity === 0 && <>
               <div className={styles.outOfStockItems}>
                 <p className={styles.column1} key={item.id}>{item.name} is out of stock!</p>
@@ -38,7 +38,7 @@ const StockAlerts = () => {
               </div>
             </> 
             }
-          </>  
+          </div>  
         ))}  
         </div>      
     </div>

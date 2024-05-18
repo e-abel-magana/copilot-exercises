@@ -1,13 +1,13 @@
 // AddItem.js
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import './AddItem.scss';
 import { Button, TextField } from '@mui/material';
-
-import { StockContext } from '../../context/StockContext';
+ 
+import useStockContext from '../../context/StockContext/useStockContext';
  
 function AddItem() {
 
-  const { handleAddItem: onAdd } = useContext(StockContext);
+  const { handleAddItem: onAdd } = useStockContext();
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
