@@ -6,6 +6,7 @@ export const StockProvider = ({ children }) => {
   const [stock, setStock] = useState([]);
   const [itemToUpdate, setItemToUpdate] = useState(null);
   const [alerts, setAlerts] = useState([]);
+  const [modalUpdateMode, setModalUpdateMode] = useState("showAll");
 
   const handleAddItem = (item) => {
     setStock(prevItems => [...prevItems, { id: Date.now().toString(), ...item }]);
@@ -22,8 +23,9 @@ export const StockProvider = ({ children }) => {
     setAlerts(prevAlerts => [...prevAlerts, { id: Date.now().toString(), message: 'Item updated successfully!', type: 'success' }]);
   };
 
-  const handleUpdateModal = (item) => {
+  const handleUpdateModal = (item, mode = "showAll") => {
     setItemToUpdate(item);
+    setModalUpdateMode(mode);
   };
 
   const handleCloseModal = () => {
@@ -41,7 +43,8 @@ export const StockProvider = ({ children }) => {
     handleDeleteItem,
     handleUpdateItem,
     handleUpdateModal,
-    handleCloseModal
+    handleCloseModal,
+    modalUpdateMode
   }
 
   return (

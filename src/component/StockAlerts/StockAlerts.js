@@ -32,7 +32,7 @@ const StockAlerts = () => {
             {+item.quantity === 0 && <>
               <div className={styles.outOfStockItems}>
                 <p className={styles.column1} key={item.id}>{item.name} is out of stock!</p>
-                <Button className={styles.column2} onClick={() => onUpdate(item)}>
+                <Button className={styles.column2} onClick={() => onUpdate(item, "showOnlyQuantity")}>
                   <EditIcon />
                 </Button>
               </div>
