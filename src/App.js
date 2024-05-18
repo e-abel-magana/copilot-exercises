@@ -4,7 +4,7 @@ import './App.scss';
 import ItemList from './ItemList';
 import AddItem from './AddItem';
 import Alert from './Alert';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 
 function App() {
   const [items, setItems] = useState([]);

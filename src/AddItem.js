@@ -1,8 +1,8 @@
 // AddItem.js
 import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+ 
 import './AddItem.scss';
+import { Button, TextField } from '@mui/material';
 
 function AddItem({ onAdd }) {
     const [name, setName] = useState('');
@@ -25,7 +25,7 @@ function AddItem({ onAdd }) {
         <TextField label="Description" value={description} onChange={(e) => setDescription(e.target.value)} required />
         <TextField label="Quantity" type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} required />
         <TextField label="Price" type="number" value={price} onChange={(e) => setPrice(e.target.value)} required />
-        <Button type="submit" variant="contained" color="primary">Add Item</Button>
+        <Button  type="submit" variant="contained" color="primary">Add Item</Button>
       </form>
     );
 }

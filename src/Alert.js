@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AlertComponent from '@material-ui/lab/Alert';
+import AlertComponent from '@mui/material/Alert';
 
 function Alert({ message, type }) {
   const [open, setOpen] = useState(true);

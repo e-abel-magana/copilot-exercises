@@ -1,6 +1,6 @@
 // ItemList.js
 import React, { useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import SearchBar from './SearchBar';
 import ItemRow from './ItemRow';
 import UpdateItem from './UpdateItem';

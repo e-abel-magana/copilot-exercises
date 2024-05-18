@@ -1,17 +1,27 @@
+/* eslint-disable eqeqeq */
 // DeleteItem.js
 import React from 'react';
 import './DeleteItem.scss';
-import Button from '@material-ui/core/Button';
+ 
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Button } from '@mui/material';
 
-function DeleteItem({ id, onDelete }) {
-  const handleDelete = () => {
-    if (window.confirm('Are you sure you want to delete this item?')) {
-      onDelete(id);
-    }
-  };
+function DeleteItem({ item, onDelete }) {
+    const handleDelete = () => {
+        if (item.quantity == 1) {
+            alert('The stock quantity of this item will reach zero after this deletion. Please replenish the stock.');
+        }
+         
+        if (window.confirm('Are you sure you want to delete this item?')) {
+            onDelete(item.id);  
+        }
+    };
 
   return (
-    <Button variant="contained" color="secondary" onClick={handleDelete}>Delete</Button>
+    <Button data-testid="delete-button" onClick={() => handleDelete()}>
+        <DeleteIcon />
+    </Button>
+  
   );
 }
 

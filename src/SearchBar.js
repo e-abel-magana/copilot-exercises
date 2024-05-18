@@ -1,7 +1,7 @@
 // SearchBar.js
 import React from 'react';
-import { TextField, InputAdornment } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import { TextField, InputAdornment } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 function SearchBar({ value, onChange }) {
   return (
