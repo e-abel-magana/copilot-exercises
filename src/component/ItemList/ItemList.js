@@ -11,21 +11,11 @@ function ItemList() {
 
   const { 
     stock: items, 
-    handleUpdateItem: onUpdate, 
-    handleDeleteItem: onDelete 
+    itemToUpdate,
   } = useContext(StockContext);
 
   const [search, setSearch] = useState('');
-  const [itemToUpdate, setItemToUpdate] = useState(null);
-
-  const handleUpdate = (item) => {
-    setItemToUpdate(item);
-  };
-
-  const handleClose = () => {
-    setItemToUpdate(null);
-  };
-
+ 
   return (
     <div>
       <SearchBar value={search} onChange={(e) => setSearch(e.target.value)} />
@@ -43,7 +33,7 @@ function ItemList() {
             <TableBody>
                 {items.filter(item => item.name.includes(search)).length > 0 ? (
                     items.filter(item => item.name.includes(search)).map((item) => (
-                    <ItemRow key={item.id} item={item} onDelete={onDelete} onUpdate={handleUpdate} />
+                    <ItemRow key={item.id} item={item} />
                     ))
                 ) : (
                     <TableRow>
@@ -53,7 +43,7 @@ function ItemList() {
             </TableBody>
         </Table>
       </TableContainer>
-      {itemToUpdate && <UpdateItem item={itemToUpdate} onUpdate={onUpdate} onClose={handleClose} />}
+      {itemToUpdate && <UpdateItem />}
     </div>
   );
 }

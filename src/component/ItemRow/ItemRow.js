@@ -1,11 +1,19 @@
 /* eslint-disable eqeqeq */
-import React from 'react';
+import {useContext} from 'react';
 import { TableRow, TableCell, Button } from '@mui/material';
 
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteItem from '../DeleteItem';
 
-function ItemRow({ item, onDelete, onUpdate }) {
+import { StockContext } from '../../context/StockContext';
+
+function ItemRow({ item }) {
+
+    const { 
+        handleDeleteItem: onDelete, 
+        handleUpdateModal: onUpdate,
+    } = useContext(StockContext);
+
     return (
         <TableRow key={item.id}>
         <TableCell>{item.name}</TableCell>

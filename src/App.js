@@ -10,7 +10,6 @@ function App() {
   return (
     <div className="App">
       <Typography variant="h2">Bakery Inventory Management System</Typography>
-    
       <StockAlerts />
       <AddItem />
       <ItemList />

@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import  { useState, useContext } from 'react';
 import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button } from '@mui/material';
 import styles from './UpdateItem.module.scss';
 
-function UpdateItem({ item, onUpdate, onClose }) {
+import { StockContext } from '../../context/StockContext';
+
+function UpdateItem() {
+
+  const { 
+    itemToUpdate: item,
+    handleUpdateItem: onUpdate, 
+    handleCloseModal: onClose
+  } = useContext(StockContext);
+
   const [updatedItem, setUpdatedItem] = useState(item);
 
   const handleChange = (e) => {

@@ -4,6 +4,7 @@ export const StockContext = createContext();
 
 export const StockProvider = ({ children }) => {
   const [stock, setStock] = useState([]);
+  const [itemToUpdate, setItemToUpdate] = useState(null);
   const [alerts, setAlerts] = useState([]);
 
   const handleAddItem = (item) => {
@@ -21,14 +22,26 @@ export const StockProvider = ({ children }) => {
     setAlerts(prevAlerts => [...prevAlerts, { id: Date.now().toString(), message: 'Item updated successfully!', type: 'success' }]);
   };
 
+  const handleUpdateModal = (item) => {
+    setItemToUpdate(item);
+  };
+
+  const handleCloseModal = () => {
+    setItemToUpdate(null);
+  };
+
+
   const value = {
     stock,
     setStock,
     alerts,
     setAlerts,
+    itemToUpdate,
     handleAddItem,
     handleDeleteItem,
     handleUpdateItem,
+    handleUpdateModal,
+    handleCloseModal
   }
 
   return (
