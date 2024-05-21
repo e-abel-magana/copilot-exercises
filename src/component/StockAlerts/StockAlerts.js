@@ -2,7 +2,6 @@ import Alert from "../Alert";
 import styles from "./StockAlerts.module.scss";
 import { Button } from "@mui/material";
 
-import EditIcon from "@mui/icons-material/Edit";
 import useStockContext from "../../context/StockContext/useStockContext";
 
 const StockAlerts = () => {
@@ -40,7 +39,7 @@ const StockAlerts = () => {
                     className={styles.column2}
                     onClick={() => onUpdate(item, "showOnlyQuantity")}
                   >
-                    <EditIcon />
+                    Acknowledge
                   </Button>
                 </div>
               </>
