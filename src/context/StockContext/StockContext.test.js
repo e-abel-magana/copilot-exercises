@@ -115,6 +115,38 @@ describe("StockContext", () => {
     }, timeout);
   });
 
+  //test handleUpdateItem when the item is not found
+
+  test("handleUpdateItem does not update an item if it is not found", async () => {
+    const { contextValue } = await makeSut();
+    const item = {
+      id: 1,
+      name: "Croissant",
+      description: "A butter flaky pastry",
+      quantity: 10,
+      price: 2.5,
+    };
+    await act(async () => {
+      contextValue.handleAddItem(item);
+    });
+
+    const updatedItem = {
+      id: 2,
+      name: "Croissant",
+      description: "A butter flaky pastry",
+      quantity: 5,
+      price: 2.5,
+    };
+
+    await act(() => {
+      contextValue.handleUpdateItem(updatedItem);
+    });
+
+    setTimeout(() => {
+      expect(contextValue.stock[0].quantity).toBe(10);
+    }, timeout);
+  });
+
   // test for handleUpdateModal
   test("handleUpdateModal updates the item to be updated", async () => {
     const { contextValue } = await makeSut();
@@ -154,6 +186,29 @@ describe("StockContext", () => {
 
     setTimeout(() => {
       expect(contextValue.itemToUpdate).toBeNull();
+    }, timeout);
+  });
+
+  // test the handleCloseAddModal function
+
+  test("handleCloseAddModal resets the item to be added", async () => {
+    const { contextValue } = await makeSut();
+    const item = {
+      name: "Croissant",
+      description: "A butter flaky pastry",
+      quantity: 10,
+      price: 2.5,
+    };
+    await act(() => {
+      contextValue.handleAddItem(item);
+    });
+
+    await act(() => {
+      contextValue.handleCloseAddModal();
+    });
+
+    setTimeout(() => {
+      expect(contextValue.itemToAdd).toBeNull();
     }, timeout);
   });
 });

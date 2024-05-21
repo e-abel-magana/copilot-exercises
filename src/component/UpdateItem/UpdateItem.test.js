@@ -2,7 +2,7 @@
 // Path: bakery-inventory/src/component/UpdateItem/UpdateItem.test.js
 
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 
 import UpdateItem from "./UpdateItem";
 import useStockContext from "../../context/StockContext/useStockContext";
@@ -66,6 +66,33 @@ describe("UpdateItem", () => {
     expect(mockStockContext.handleUpdateItem).toHaveBeenCalledTimes(1);
   });
 
+  test("should cover the condition onSubmit and display the alert function", () => {
+    // mock alert
+    jest.spyOn(window, "alert").mockImplementation(() => {});
+    render(<UpdateItem />);
+    const nameElement = screen.getByLabelText(/Name/i);
+    const descriptionElement = screen.getByLabelText(/Description/i);
+    const quantityElement = screen.getByLabelText(/Quantity/i);
+    const priceElement = screen.getByLabelText(/Price/i);
+
+    // fill the form using fireEvent
+    fireEvent.change(nameElement, { target: { value: "" } });
+    fireEvent.change(descriptionElement, {
+      target: { value: "" },
+    });
+    fireEvent.change(quantityElement, { target: { value: "" } });
+    fireEvent.change(priceElement, { target: { value: "" } });
+
+    expect(nameElement.value).toBe("");
+    expect(descriptionElement.value).toBe("");
+    expect(quantityElement.value).toBe("");
+    expect(priceElement.value).toBe("");
+
+    const updateButton = screen.getByTestId("modal-update-button");
+    updateButton.click();
+    expect(mockStockContext.handleUpdateItem).not.toHaveBeenCalled();
+  });
+
   // test when modalUpdateMode is 'showOnlyQuantity'
 
   test("renders Update Item form with showOnlyQuantity mode", () => {
@@ -100,5 +127,28 @@ describe("UpdateItem", () => {
     expect(quantityElement).toBeInTheDocument();
     expect(priceElement).toBeInTheDocument();
     expect(buttonElement).toBeInTheDocument();
+  });
+
+  // test the handleChange function
+
+  test("handleChange function", () => {
+    render(<UpdateItem />);
+    const nameElement = screen.getByLabelText(/Name/i);
+    const descriptionElement = screen.getByLabelText(/Description/i);
+    const quantityElement = screen.getByLabelText(/Quantity/i);
+    const priceElement = screen.getByLabelText(/Price/i);
+
+    // fill the form using fireEvent
+    fireEvent.change(nameElement, { target: { value: "Change - Croissant" } });
+    fireEvent.change(descriptionElement, {
+      target: { value: "Change - A butter flaky pastry" },
+    });
+    fireEvent.change(quantityElement, { target: { value: 12 } });
+    fireEvent.change(priceElement, { target: { value: 2.6 } });
+
+    expect(nameElement.value).toBe("Change - Croissant");
+    expect(descriptionElement.value).toBe("Change - A butter flaky pastry");
+    expect(quantityElement.value).toBe("12");
+    expect(priceElement.value).toBe("2.6");
   });
 });

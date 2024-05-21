@@ -36,6 +36,7 @@ const StockAlerts = () => {
                     {item.name} is out of stock!
                   </p>
                   <Button
+                    data-testid="update-modal-stock-button"
                     className={styles.column2}
                     onClick={() => onUpdate(item, "showOnlyQuantity")}
                   >

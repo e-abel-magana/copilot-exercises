@@ -71,4 +71,14 @@ describe("AddItem", () => {
     addButton.click();
     expect(mockStockContext.handleAddItem).toHaveBeenCalledTimes(1);
   });
+
+  // test to display the alert "All fields are required"
+  test("displays the alert when the form is submitted with empty fields", () => {
+    // mock alert
+    jest.spyOn(window, "alert").mockImplementation(() => {});
+    render(<AddItem />);
+    const addButton = screen.getByTestId("modal-add-button");
+    addButton.click();
+    expect(window.alert).toHaveBeenCalled();
+  });
 });

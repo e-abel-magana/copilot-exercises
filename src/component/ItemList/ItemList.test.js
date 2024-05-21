@@ -2,7 +2,7 @@
 // Path: bakery-inventory/src/component/ItemList/ItemList.test.js
 
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import ItemList from "./ItemList";
 import useStockContext from "../../context/StockContext/useStockContext";
 
@@ -28,6 +28,8 @@ describe("ItemList", () => {
       },
     ],
     handleDeleteItem: jest.fn(),
+    setShowAddModal: jest.fn(),
+    showAddModal: false,
   };
 
   beforeEach(() => {
@@ -35,6 +37,7 @@ describe("ItemList", () => {
   });
 
   afterEach(() => {
+    useStockContext.mockRestore();
     mockStockContext.handleDeleteItem.mockRestore();
   });
 
@@ -51,5 +54,46 @@ describe("ItemList", () => {
     expect(searchBarElement).toBeInTheDocument();
     searchBarElement.value = "Item 1";
     expect(searchBarElement.value).toBe("Item 1");
+  });
+
+  test("calls useStockContext and uses return values", () => {
+    render(<ItemList />);
+    expect(useStockContext).toHaveBeenCalled();
+  });
+
+  test("calls setShowAddModal with true when Button is clicked", () => {
+    render(<ItemList />);
+    const buttonElement = screen.getByRole("button", { name: "Add Item" });
+    fireEvent.click(buttonElement);
+    expect(mockStockContext.setShowAddModal).toHaveBeenCalledWith(true);
+  });
+
+  test("search for onChange event", () => {
+    render(<ItemList />);
+    const searchBarElement = screen.getByLabelText("Search");
+    fireEvent.change(searchBarElement, { target: { value: "Item 1" } });
+    expect(searchBarElement.value).toBe("Item 1");
+  });
+
+  // test when empty search occur
+  test("cover the items that empty", () => {
+    useStockContext.mockRestore();
+    const newMockStockContext = {
+      ...mockStockContext,
+      stock: [],
+    };
+    useStockContext.mockReturnValue(newMockStockContext);
+    render(<ItemList />);
+  });
+
+  // test when showAddModal is true
+  test("cover the showAddModal is true", () => {
+    useStockContext.mockRestore();
+    const newMockStockContext = {
+      ...mockStockContext,
+      showAddModal: true,
+    };
+    useStockContext.mockReturnValue(newMockStockContext);
+    render(<ItemList />);
   });
 });

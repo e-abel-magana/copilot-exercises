@@ -47,6 +47,7 @@ describe("StockAlerts", () => {
         type: "success",
       },
     ],
+    handleUpdateModal: jest.fn(),
   };
 
   beforeEach(() => {
@@ -88,5 +89,13 @@ describe("StockAlerts", () => {
     const outOfStockText = screen.getAllByText(/Ice tea is out of stock!/i);
     expect(outOfStockItems).toHaveLength(1);
     expect(outOfStockText).toHaveLength(1);
+
+    // click the button with id update-modal-stock-button
+    const updateButton = screen.getByTestId("update-modal-stock-button");
+    updateButton.click();
+
+    // expect the update button to be clicked
+    expect(updateButton).toBeInTheDocument();
+    expect(mockStockContext?.handleUpdateModal).toHaveBeenCalled();
   });
 });

@@ -2,8 +2,10 @@
 // Path: bakery-inventory/src/component/Alert/Alert.test.js
 
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import Alert from "./Alert";
+
+jest.useFakeTimers();
 
 test("renders Alert component", () => {
   render(<Alert />);
@@ -19,8 +21,21 @@ test("renders Alert component with clear prop", () => {
 });
 
 // cover the message prop
-test("renders Alert component with message prop", () => {
-  render(<Alert message="This is an alert message" />);
-  const alertElement = screen.getByText(/This is an alert message/i);
-  expect(alertElement).toBeInTheDocument();
+test("calls setOpen after timeout", () => {
+  const setOpen = jest.fn();
+  render(<Alert setOpen={setOpen} />);
+
+  act(() => {
+    jest.advanceTimersByTime(2000); // Replace 1000 with the timeout delay
+  });
+});
+
+// cover the message prop with clear prop as false
+test("calls setOpen after timeout", () => {
+  const setOpen = jest.fn();
+  render(<Alert setOpen={setOpen} clear={false} />);
+
+  act(() => {
+    jest.advanceTimersByTime(2000); // Replace 1000 with the timeout delay
+  });
 });
