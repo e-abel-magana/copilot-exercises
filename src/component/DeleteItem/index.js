@@ -1,1 +1,1 @@
-export { default } from './DeleteItem';
+export { default } from "./DeleteItem";

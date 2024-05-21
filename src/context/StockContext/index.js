@@ -1,1 +1,1 @@
-export { StockContext, StockProvider } from './StockContext';
+export { StockContext, StockProvider } from "./StockContext";
