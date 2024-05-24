@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/copilot-exercises/static/css/main.6aef031a.css",
+    "main.js": "/copilot-exercises/static/js/main.9ac03175.js",
+    "static/js/453.09cfa544.chunk.js": "/copilot-exercises/static/js/453.09cfa544.chunk.js",
+    "index.html": "/copilot-exercises/index.html",
+    "main.6aef031a.css.map": "/copilot-exercises/static/css/main.6aef031a.css.map",
+    "main.9ac03175.js.map": "/copilot-exercises/static/js/main.9ac03175.js.map",
+    "453.09cfa544.chunk.js.map": "/copilot-exercises/static/js/453.09cfa544.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6aef031a.css",
+    "static/js/main.9ac03175.js"
+  ]
+}
